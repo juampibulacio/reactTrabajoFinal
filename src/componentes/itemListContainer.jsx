@@ -2,7 +2,7 @@ import React, {useState, useEffect}  from "react"
 import Flex from "./Flex/flex"
 import Item from "./Item"
 import products from "../data/products";
-
+import ItemList from "./ItemList/itemList";
 
 function getItems() {
     const promesa = new Promise((resolve) => {
@@ -32,21 +32,7 @@ function ItemListContainer (props) {
     
 
         return (
-
-        
-            <Flex>
-            { products.map((producto) => (
-            <Item
-            key={producto.id}
-            id={producto.id}
-            title={producto.title}
-            price={producto.price}
-            category={producto.category}
-            img={producto.img}
-                />))
-            }
-                </Flex>
-               
+            <ItemList products={products}/>
     )
 }
 
