@@ -1,14 +1,52 @@
-function ItemListContainer (props) {
-    const styleSaludo = {
-        marginTop:"20x",
-        fontSize: "100px",
-        fontColor: "red"
-    };
+import React, {useState, useEffect}  from "react"
+import Flex from "./Flex/flex"
+import Item from "./Item"
+import products from "../data/products";
 
-    return ( 
+
+function getItems() {
+    const promesa = new Promise((resolve) => {
+    
+      setTimeout(() => {
+          resolve(products);
+      }, 2500);
+    });
+  
+    return promesa;
+  }
+
+
+
+
+
+function ItemListContainer (props) {
+    
+    const [products, setProducts] = useState ([]);
+    
+    useEffect(
+        () => {getItems().then((respuesta) => {
+            console.log("promesa cumplida", respuesta);
+            setProducts(respuesta)} );},
+            []
+    )
+    
+
+        return (
+
         
-            <h1 style={styleSaludo}>{props.text}</h1>
-            
+            <Flex>
+            { products.map((producto) => (
+            <Item
+            key={producto.id}
+            id={producto.id}
+            title={producto.title}
+            price={producto.price}
+            category={producto.category}
+            img={producto.img}
+                />))
+            }
+                </Flex>
+               
     )
 }
 
