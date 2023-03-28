@@ -1,20 +1,18 @@
 import Item from "../Item"
 import Flex from "../Flex/flex"
-import products from "../../data/products"
+import product from "../../data/products"
 
-function ItemDetail () {
+function ItemDetail ({product}) {
     return (
       <Flex>
-            { products.map((producto) => (
             <Item
-            key={producto.id}
-            id={producto.id}
-            title={producto.title}
-            price={producto.price}
-            category={producto.category}
-            img={producto.img}
-                />))
-            }
+            key={product.id}
+            id={product.id}
+            title={product.title}
+            price={product.price}
+            category={product.category}
+            img={product.img}
+            />
                 </Flex>
     )
 }

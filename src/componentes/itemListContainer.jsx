@@ -10,7 +10,7 @@ function getItems() {
     
       setTimeout(() => {
           resolve(products);
-      }, 2500);
+      }, 1000);
     });
   
     return promesa;
@@ -46,7 +46,7 @@ function ItemListContainer (props) {
             setProducts(respuesta)
             );
         }
-        },   [] )
+        },   [categoryid] )
     
 
         return (

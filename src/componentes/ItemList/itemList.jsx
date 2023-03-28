@@ -1,8 +1,8 @@
 import Item from "../Item"
 import Flex from "../Flex/flex"
-import products from "../../data/products"
 
-function ItemList () {
+
+function ItemList ({products}) {
     return (
             <Flex>
             { products.map((producto) => (
