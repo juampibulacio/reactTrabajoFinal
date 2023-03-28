@@ -1,5 +1,8 @@
 import "./item.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import Button from "../Button/Button";
+import products from "../../data/products";
 
 export default function Item(props) {
   const [fav, setFav] = useState(false);
@@ -18,7 +21,7 @@ export default function Item(props) {
 
   return (
     <div id={props.id} className="item-card">
-      {/* ToggleButton icon="☀" color="red" */}
+      
       <button onClick={handleFavorite} className={classNameFavorite}>
         ♥
       </button>
@@ -34,7 +37,13 @@ export default function Item(props) {
         <h4>$ {props.price}</h4>
         <small>{props.category}</small>
       </div>
-      <button>Ver detalle</button>
+      
+      <Link to={`/detalle/${props.id}`}>
+      <Button>Ver detalle</Button>
+      </Link>
+      
+      
+  
     </div>
   );
 }

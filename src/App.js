@@ -1,17 +1,24 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Button from './componentes/button';
-import Saludo from './componentes/saludo';
 import Navbar from './componentes/navbar';
+import Item from './componentes/Item';
 import ItemListContainer from './componentes/itemListContainer';
+import ItemDetailContainer from './componentes/ItemDetailContainer/ItemDetailContainer';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-  <Navbar/>
-          <ItemListContainer/>
-          
-    </div>
+    
+          <BrowserRouter>
+          <Navbar/>
+          <Routes>
+          <Route path="/" element = {<ItemListContainer/>}/>
+          <Route path="/detalle/:id" element = {<ItemDetailContainer/>}/>
+          <Route path="/category/:categoryid" element = {<ItemListContainer/>}/>
+          <Route path="*" element = {<h1>error 404 not found</h1>}/>
+          </Routes>
+          </BrowserRouter>
+  
   );
 }
 
