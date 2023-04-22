@@ -1,13 +1,12 @@
 import "./item.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import Button from "../Button/Button";
-import products from "../../data/products";
+import { Link } from 'react-router-dom';
 
 export default function Item(props) {
   const [fav, setFav] = useState(false);
 
-  function handleFavorite() {
+  function handleFavorite(event) {
+    event.preventDefault()
     setFav(!fav);
   }
 
@@ -34,16 +33,20 @@ export default function Item(props) {
       </div>
 
       <div className="item-card_detail">
-        <h4>$ {props.price}</h4>
+      <h4>$ {props.price}</h4>
+        {
+          props.offer && <h4>Oferta! {props.offer}% </h4>
+        }
+        
         <small>{props.category}</small>
       </div>
       
-      <Link to={`/detalle/${props.id}`}>
-      <Button>Ver detalle</Button>
-      </Link>
+      <Link to={ `/detalle/${props.id}` }>
+        <button>Ver detalle</button>
+        </Link> 
       
       
-  
     </div>
   );
 }
+

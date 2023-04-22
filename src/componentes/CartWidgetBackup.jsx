@@ -3,14 +3,13 @@ import { cartContext, } from "../context/cartContext";
 
 function CartWidget () {
 
-    const {calcularTotal} = useContext(cartContext);
+    const {cart} = useContext(cartContext);
     
 
     return (
         <span role="img" aria-label="cart">🛒<span>
             
-            {calcularTotal() > 0 && (calcularTotal())}
-            
+            {cart.length > 0 && (cart.length)}  
             
              
             </span></span>

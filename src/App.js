@@ -1,25 +1,39 @@
 
+import { createContext, useState } from 'react';
 import './App.css';
-import Navbar from './componentes/navbar';
-import Item from './componentes/Item';
-import ItemListContainer from './componentes/itemListContainer';
+import Navbar from './componentes/Navbar';
+import ItemListContainer from './componentes/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './componentes/ItemDetailContainer/ItemDetailContainer';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Flex from './componentes/Flex/Flex';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/cartContext';
+import CartContainer from './componentes/CartContainer/CartContainer';
 
 function App() {
+
   return (
-    
-          <BrowserRouter>
-          <Navbar/>
-          <Routes>
-          <Route path="/" element = {<ItemListContainer/>}/>
-          <Route path="/detalle/:id" element = {<ItemDetailContainer/>}/>
-          <Route path="/category/:categoryid" element = {<ItemListContainer/>}/>
-          <Route path="*" element = {<h1>error 404 not found</h1>}/>
-          </Routes>
-          </BrowserRouter>
-  
+    <>
+<CartProvider>
+
+    <BrowserRouter>
+     
+      <Navbar />
+
+      <Routes>
+       
+        <Route path="/" element={<ItemListContainer/>}/>
+        <Route path="/category/:categoryid" element={<ItemListContainer/>}/>
+        <Route path="/detalle/:id" element={<ItemDetailContainer/>}/>
+        <Route path="/cart" element={<CartContainer/>}/>
+        <Route path="*" element={ <p>404</p> }  /> 
+      </Routes>
+    </BrowserRouter>
+
+    </CartProvider>
+    </>
   );
 }
 
 export default App;
+
+
