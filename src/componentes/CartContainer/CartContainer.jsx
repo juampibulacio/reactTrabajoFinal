@@ -4,29 +4,24 @@ import Flex from "../Flex/Flex";
 import { createOrder } from "../../services/firestore";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
+import FormCheckout from "./FormCheckout";
 
 function CartContainer() {
     const context = useContext(cartContext)
-    const {cart, getTotalPrice, removeItem} = context;
+    const {cart, getTotalPrice, removeItem, clearCart} = context;
 
 
-
-    /* rendering condicional: si el carrito está vacío mostrar un mensaje */
-    /* mostrar el contenido del carrito */
-
-
-
-async function handleCheckout() {
+async function handleCheckout(userData) {
     const order = {
         items: cart,
-        buyer: {name: "Juan"},
+        buyer: userData,
         total: getTotalPrice(), 
         date: new Date(),
     }
     const orderId = await createOrder(order);
     
     const orderComplete = await swal({
-        title: "gracias por tu compra",
+        title: "¡Gracias!",
         text: "Tu compra se realizó correctamente. \n Tu número de compra es: \n " + orderId,
         icon: "success",
       });
@@ -65,10 +60,10 @@ async function handleCheckout() {
          ) 
      }
      <br />
- <span>El total de tu compra es: ${getTotalPrice()} </span>
+ <span>El total de tu compra es de: ${getTotalPrice()} </span>
  <br />
  <br />
- <button onClick={handleCheckout}> finalizar compra</button>
+ <FormCheckout onCheckout={handleCheckout} />
 </div>  )  }
 
 </div>

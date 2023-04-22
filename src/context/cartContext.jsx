@@ -41,9 +41,9 @@ const cartContext = createContext ({cart: []});
        return total.toFixed(2);
    }
    
-   /* function clearCart() {
-    setCart(newCart)
-   } */
+   function clearCart() {
+    setCart([])
+   }
    
   
  
@@ -62,7 +62,7 @@ const cartContext = createContext ({cart: []});
 
 
     return (
-        <cartContext.Provider value={{cart, addItem,isIteminCart, getTotalPrice, getCountInCart, calcularTotal, removeItem}}>
+        <cartContext.Provider value={{cart, addItem,isIteminCart, getTotalPrice, getCountInCart, calcularTotal, removeItem, clearCart}}>
             {props.children}
         </cartContext.Provider>
     )
